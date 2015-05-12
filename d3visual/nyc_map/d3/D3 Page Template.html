@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<!-- saved from url=(0096)http://localhost:8000/Documents/ds1004/project/d3%20visual/storm%26festival/storm_version1.html# -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<title>D3 Page Template</title>
+		<script type="text/javascript" src="./D3 Page Template_files/jquery-latest.min.js"></script>
+		<script type="text/javascript" src="./D3 Page Template_files/d3.v3.min.js"></script>
+		<script src="./D3 Page Template_files/bootstrap.min.js"></script>
+        <script src="./D3 Page Template_files/d3.tip.v0.6.3.js"></script>
+		<link rel="stylesheet" href="http://localhost:8000/Documents/ds1004/project/d3%20visual/storm%26festival/bootstrap.min.css">
+		<style>
+		.axis path,
+.axis line {
+	fill: none;
+	stroke: black;
+	shape-rendering: crispEdges;
+}
+
+.axis text {
+	font-family: sans-serif;
+	font-size: 11px;
+}
+
+.dot {
+  stroke: #000;
+}
+
+.bar {
+  fill: #0066CC;
+}
+
+.bar:hover {
+  fill: #66FFFF;
+}
+.d3-tip {
+  line-height: 1;
+  font-weight: bold;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border-radius: 2px;
+}
+
+/* Creates a small triangle extender for the tooltip */
+.d3-tip:after {
+  box-sizing: border-box;
+  display: inline;
+  font-size: 10px;
+  width: 100%;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.8);
+  content: "\25BC";
+  position: absolute;
+  text-align: center;
+}
+
+/* Style northward tooltips differently */
+.d3-tip.n:after {
+  margin: -1px 0 0 0;
+  top: 100%;
+  left: 0;
+}
+.legend {
+	            padding: 5px;
+	            font: 10px sans-serif;
+	            background: yellow;
+	            box-shadow: 2px 2px 1px #888;
+            }
+
+
+		</style>
+	</head>
+	<body>
+		<div>
+			<div class="btn-group pull-right">
+  				<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+   						 Messages per hour <span class="caret"></span>
+ 				</button>
+  				<ul class="dropdown-menu" role="menu">
+   					<li><a class="m" value="2012-10-29" href="./D3 Page Template_files/D3 Page Template.html">sandy 2012-10-29</a></li>
+            <li><a class="m" value="2012-10-30" href="./D3 Page Template_files/D3 Page Template.html">sandy 2012-10-30</a></li>
+            <li><a class="m" value="2012-10-31" href="./D3 Page Template_files/D3 Page Template.html">sandy 2012-10-31</a></li>
+
+  				</ul>
+			</div>
+
+		<div id="mbars">
+		<svg width="600" height="500"><g class="rgroups" transform="translate(40,460)" style="fill: rgb(31, 119, 180);"><rect class="bar" width="15" style="fill-opacity: 1;" height="137.1278945436586" y="-137.1278945436586" x="0"></rect><rect class="bar" width="15" style="fill-opacity: 1;" height="80.06377930869212" y="-80.06377930869212" x="23"></rect><rect class="bar" width="15" style="fill-opacity: 1;" height="48.735069321994956" y="-48.735069321994956" x="45"></rect><rect class="bar" width="15" style="fill-opacity: 1;" height="31.870164008660595" y="-31.870164008660595" x="68"></rect><rect class="bar" width="15" style="fill-opacity: 1;" height="28.096107203858253" y="-28.09610720385831" x="90"></rect><rect class="bar" width="15" style="fill-opacity: 1;" height="63.923408809438" y="-63.923408809438" x="113"></rect><rect class="bar" width="15" style="fill-opacity: 1;" height="185.12222600660687" y="-185.12222600660687" x="136"></rect><rect class="bar" width="15" style="fill-opacity: 1;" height="349.84568982470176" y="-349.84568982470176" x="158"></rect><rect class="bar" width="15" style="fill-opacity: 1;" height="417.47030981661385" y="-417.47030981661385" x="181"></rect><rect class="bar" width="15" style="fill-opacity: 1;" height="420" y="-420" x="203"></rect><rect class="bar" width="15" style="fill-opacity: 1;" height="404.8402677373255" y="-404.8402677373255" x="226"></rect><rect class="bar" width="15" style="fill-opacity: 1;" height="388.23590466385104" y="-388.23590466385104" x="249"></rect><rect class="bar" width="15" style="fill-opacity: 1;" height="376.475271683049" y="-376.475271683049" x="271"></rect><rect class="bar" width="15" style="fill-opacity: 1;" height="366.6912876441181" y="-366.6912876441181" x="294"></rect><rect class="bar" width="15" style="fill-opacity: 1;" height="370.6502906336091" y="-370.6502906336091" x="317"></rect><rect class="bar" width="15" style="fill-opacity: 1;" height="353.0336865778683" y="-353.0336865778683" x="339"></rect><rect class="bar" width="15" style="fill-opacity: 1;" height="295.026826445937" y="-295.026826445937" x="362"></rect><rect class="bar" width="15" style="fill-opacity: 1;" height="346.0429168670975" y="-346.0429168670975" x="384"></rect><rect class="bar" width="15" style="fill-opacity: 1;" height="402.75685570672994" y="-402.75685570672994" x="407"></rect><rect class="bar" width="15" style="fill-opacity: 1;" height="401.79582451616017" y="-401.79582451616017" x="430"></rect><rect class="bar" width="15" style="fill-opacity: 1;" height="383.85887673022944" y="-383.85887673022944" x="452"></rect><rect class="bar" width="15" style="fill-opacity: 1;" height="389.57693129889486" y="-389.57693129889486" x="475"></rect><rect class="bar" width="15" style="fill-opacity: 1;" height="387.011240400474" y="-387.011240400474" x="497"></rect><rect class="bar" width="15" style="fill-opacity: 1;" height="346.01941564389404" y="-346.01941564389404" x="520"></rect></g><g class="x axis" transform="translate(40,460)"><g class="tick" transform="translate(0,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text dy=".71em" y="9" style="text-anchor: middle;" x="0">00</text></g><g class="tick" transform="translate(23,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text dy=".71em" y="9" style="text-anchor: middle;" x="0">01</text></g><g class="tick" transform="translate(45,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text dy=".71em" y="9" style="text-anchor: middle;" x="0">02</text></g><g class="tick" transform="translate(68,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text dy=".71em" y="9" style="text-anchor: middle;" x="0">03</text></g><g class="tick" transform="translate(90,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text dy=".71em" y="9" style="text-anchor: middle;" x="0">04</text></g><g class="tick" transform="translate(113,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text dy=".71em" y="9" style="text-anchor: middle;" x="0">05</text></g><g class="tick" transform="translate(136,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text dy=".71em" y="9" style="text-anchor: middle;" x="0">06</text></g><g class="tick" transform="translate(158,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text dy=".71em" y="9" style="text-anchor: middle;" x="0">07</text></g><g class="tick" transform="translate(181,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text dy=".71em" y="9" style="text-anchor: middle;" x="0">08</text></g><g class="tick" transform="translate(203,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text dy=".71em" y="9" style="text-anchor: middle;" x="0">09</text></g><g class="tick" transform="translate(226,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text dy=".71em" y="9" style="text-anchor: middle;" x="0">10</text></g><g class="tick" transform="translate(249,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text dy=".71em" y="9" style="text-anchor: middle;" x="0">11</text></g><g class="tick" transform="translate(271,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text dy=".71em" y="9" style="text-anchor: middle;" x="0">12</text></g><g class="tick" transform="translate(294,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text dy=".71em" y="9" style="text-anchor: middle;" x="0">13</text></g><g class="tick" transform="translate(317,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text dy=".71em" y="9" style="text-anchor: middle;" x="0">14</text></g><g class="tick" transform="translate(339,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text dy=".71em" y="9" style="text-anchor: middle;" x="0">15</text></g><g class="tick" transform="translate(362,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text dy=".71em" y="9" style="text-anchor: middle;" x="0">16</text></g><g class="tick" transform="translate(384,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text dy=".71em" y="9" style="text-anchor: middle;" x="0">17</text></g><g class="tick" transform="translate(407,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text dy=".71em" y="9" style="text-anchor: middle;" x="0">18</text></g><g class="tick" transform="translate(430,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text dy=".71em" y="9" style="text-anchor: middle;" x="0">19</text></g><g class="tick" transform="translate(452,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text dy=".71em" y="9" style="text-anchor: middle;" x="0">20</text></g><g class="tick" transform="translate(475,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text dy=".71em" y="9" style="text-anchor: middle;" x="0">21</text></g><g class="tick" transform="translate(497,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text dy=".71em" y="9" style="text-anchor: middle;" x="0">22</text></g><g class="tick" transform="translate(520,0)" style="opacity: 1;"><line y2="6" x2="0"></line><text dy=".71em" y="9" style="text-anchor: middle;" x="0">23</text></g><path class="domain" d="M0,6V0H520V6"></path></g><g class="y axis" transform="translate(40,40)"><g class="tick" transform="translate(0,420)" style="opacity: 1;"><line x2="-6" y2="0"></line><text dy=".32em" x="-9" y="0" style="text-anchor: end;">0</text></g><g class="tick" transform="translate(0,351.91998291015625)" style="opacity: 1;"><line x2="-6" y2="0"></line><text dy=".32em" x="-9" style="text-anchor: end;" y="0">50</text></g><g class="tick" transform="translate(0,283.8399658203125)" style="opacity: 1;"><line x2="-6" y2="0"></line><text dy=".32em" x="-9" style="text-anchor: end;" y="0">100</text></g><g class="tick" transform="translate(0,215.7599334716797)" style="opacity: 1;"><line x2="-6" y2="0"></line><text dy=".32em" x="-9" style="text-anchor: end;" y="0">150</text></g><g class="tick" transform="translate(0,147.67991638183594)" style="opacity: 1;"><line x2="-6" y2="0"></line><text dy=".32em" x="-9" style="text-anchor: end;" y="0">200</text></g><g class="tick" transform="translate(0,79.59989929199219)" style="opacity: 1;"><line x2="-6" y2="0"></line><text dy=".32em" x="-9" style="text-anchor: end;" y="0">250</text></g><g class="tick" transform="translate(0,11.519874572753906)" style="opacity: 1;"><line x2="-6" y2="0"></line><text dy=".32em" x="-9" style="text-anchor: end;" y="0">300</text></g><path class="domain" d="M-6,0H0V420H-6"></path></g><text transform="rotate(-90)" y="-5" x="-250" dy="1em">Total Revenue per Hour</text><text class="xtext" x="260" y="495" text-anchor="middle">Hours</text><text class="title" x="300" y="20" text-anchor="middle" style="font-size: 16px; text-decoration: underline;">Hourly basis: Total Revenue on 2012-10-31 .</text></svg></div>
+	    </div>
+		<script type="text/javascript">
+        var w = 600;                        //width
+        var h = 500;                        //height
+        var padding = {top: 40, right: 40, bottom: 40, left:40};
+        var dataset;
+        //Set up stack method
+        var stack = d3.layout.stack();
+
+        d3.json("1001.json",function(json){
+            dataset = json;
+
+            //Data, stacked
+            stack(dataset);
+
+            // var color_hash = {
+            //         0 : ["Invite","#1f77b4"],
+            //         // 1 : ["Accept","#2ca02c"],
+            //         // 2 : ["Decline","#ff7f0e"]
+            //     };
+
+            //Set up scales
+            var xScale = d3.time.scale()
+               .domain([new Date(0, 0, 0,dataset[0][0].time,0, 0, 0),new Date(0, 0, 0,dataset[0][dataset[0].length-1].time,0, 0, 0)])
+               .rangeRound([0, w-padding.left-padding.right]);
+            
+            
+            var yScale = d3.scale.linear()
+                .domain([0, d3.max(dataset, function(d) {
+                    return d3.max(d, function(d) {
+                        return d.y0 + d.y;
+                        });
+                    })
+                ])
+                .range([h-padding.bottom-padding.top,0]);
+
+            var xAxis = d3.svg.axis()
+                .scale(xScale)
+                .ticks(d3.time.months)
+                .tickFormat(d3.time.format("%B"));
+
+            var yAxis = d3.svg.axis()
+                .scale(yScale)
+                .orient("left")
+                .ticks(10);
+
+            var tip = d3.tip()
+                .attr('class', 'd3-tip')
+                .offset([-10, 0])
+                .html(function(d) {
+                    return "<strong>$</strong> <span style='color:white'>" + d.y+"k"+"</span>";
+                })
+
+            //Create SVG element
+            var svg = d3.select("#mbars")
+                .append("svg")
+                .attr("width", w)
+                .attr("height", h);
+
+            svg.call(tip)
+            // Add a group for each row of data
+            var groups = svg.selectAll("g")
+                .data(dataset)
+
+                .enter()
+                .append("g")
+                .attr("class","rgroups")
+                .attr("transform","translate("+ padding.left + "," + (h - padding.bottom) +")")
+                .style("fill", "#1f77b4")
+
+            // Add a rect for each data value
+            var rects = groups.selectAll("rect")
+                .data(function(d) { return d; })
+                .enter()
+                .append("rect")
+                .attr("class","bar")
+                .attr("width", 2)
+                .style("fill-opacity",1e-6)
+                .on('mouseover', tip.show)
+                .on('mouseout', tip.hide)
+
+
+
+            rects.transition()
+                 .duration(1000)
+                 .ease("linear")
+                .attr("x", function(d) {
+                    return xScale(new Date(0, 0, 0,d.time,0, 0, 0));
+                })
+                .attr("y", function(d) {
+                    return -(- yScale(d.y0) - yScale(d.y) + (h - padding.top - padding.bottom)*2);
+                })
+                .attr("height", function(d) {
+                    return -yScale(d.y) + (h - padding.top - padding.bottom);
+                })
+                .attr("width", 15)
+                .style("fill-opacity",1);
+
+            //add xAxis,yAxis,xlabel,ylabel,title
+            svg.append("g")
+                .attr("class","x axis")
+                .attr("transform","translate(40," + (h - padding.bottom) + ")")
+                .call(xAxis);
+
+
+            svg.append("g")
+                .attr("class","y axis")
+                .attr("transform","translate(" + padding.left + "," + padding.top + ")")
+                .call(yAxis);
+
+               
+            svg.append("text")
+                .attr("transform","rotate(-90)")
+                .attr("y", 0 - 5)
+                .attr("x", 0-(h/2))
+                .attr("dy","1em")
+                .text("Total Revenue per Hour");
+
+            svg.append("text")
+               .attr("class","xtext")
+               .attr("x",w/2 - padding.left)
+               .attr("y",h - 5)
+               .attr("text-anchor","middle")
+               .text("Hours");
+
+            svg.append("text")
+                .attr("class","title")
+                .attr("x", (w / 2))             
+                .attr("y", 20)
+                .attr("text-anchor", "middle")  
+                .style("font-size", "16px") 
+                .style("text-decoration", "underline")  
+                .text("On a normal day 2012-10-01: Total Revenue (hourly basis)");
+
+            //On click, update with new data            
+            d3.selectAll(".m")
+                .on("click", function() {
+                    var date = this.getAttribute("value");
+
+                    var str;
+                    if(date =="2012-10-29"){
+                        str = "1029.json";
+                    }else if(date == "2012-10-30"){
+                        str = "1030.json";
+                    }else if (date =="2012-10-31"){
+                      str = "1031.json"
+                    }
+
+                    d3.json(str,function(json){
+                        
+                        dataset = json;
+                        // console.log(dataset);
+                        stack(dataset);
+
+
+                        xScale.domain([new Date(0, 0, 0,dataset[0][0].time,0, 0, 0),new Date(0, 0, 0,dataset[0][dataset[0].length-1].time,0, 0, 0)])
+                        .rangeRound([0, w-padding.left-padding.right]);
+
+                        yScale.domain([0,               
+                                        d3.max(dataset, function(d) {
+                                            return d3.max(d, function(d) {
+                                                return d.y0 + d.y;
+                                            });
+                                        })
+                                    ])
+                                    .range([h-padding.bottom-padding.top,0]);
+
+                        xAxis.scale(xScale)
+                             .ticks(d3.time.hour,1)
+                             .tickFormat(d3.time.format("%H"));
+
+                        yAxis.scale(yScale)
+                             .orient("left")
+                             .ticks(10);
+
+                         groups = svg.selectAll(".rgroups")
+                            .data(dataset);
+
+                            groups.enter().append("g")
+                            .attr("class","rgroups")
+                            .attr("transform","translate("+ padding.left + "," + (h - padding.bottom) +")")
+                            .style("fill",function(d,i){
+                                return color(i);
+                            });
+
+
+                            rect = groups.selectAll("rect")
+                            .data(function(d){return d;});
+
+                            rect.enter()
+                              .append("rect")
+                              .attr("x",w)
+                              .attr("width",1)
+                              .style("fill-opacity",1e-6);
+
+                        rect.transition()
+                            .duration(1000)
+                            .ease("linear")
+                            .attr("x",function(d){
+                                return xScale(new Date(0, 0, 0,d.time,0, 0, 0));
+                            })
+                            .attr("y",function(d){
+                                return -(- yScale(d.y0) - yScale(d.y) + (h - padding.top - padding.bottom)*2);
+                            })
+                            .attr("height",function(d){
+                                return -yScale(d.y) + (h - padding.top - padding.bottom);
+                            })
+                            .attr("width",15)
+                            .style("fill-opacity",1);
+
+                        rect.exit()
+                           .transition()
+                           .duration(1000)
+                           .ease("circle")
+                           .attr("x",w)
+                           .remove();
+
+                        groups.exit()
+                           .transition()
+                           .duration(1000)
+                           .ease("circle")
+                           .attr("x",w)
+                           .remove();
+
+
+                        svg.select(".x.axis")
+                           .transition()
+                           .duration(1000)
+                           .ease("circle")
+                           .call(xAxis);
+
+                        svg.select(".y.axis")
+                           .transition()
+                           .duration(1000)
+                           .ease("circle")
+                           .call(yAxis);
+
+                        svg.select(".xtext")
+                           .text("Hours");
+
+                        svg.select(".title")
+                        .text("Hourly basis: Total Revenue on " + date + " .");
+                    });         
+                });
+
+
+        });
+        </script>
+	
+
+
+<div class="d3-tip n" style="position: absolute; opacity: 0; pointer-events: none; top: 24.98876953125px; left: 489.5px;"><strong>$</strong> <span style="color:white">284.23261k</span></div></body></html>

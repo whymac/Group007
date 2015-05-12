@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<!-- saved from url=(0108)file:///Users/bingbing/Library/Messages/Attachments/01/01/5057DB59-E181-429B-BF03-D69E4096B264/untitled.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8">
+<style>
+
+.overlay {
+  fill: none;
+  pointer-events: all;
+}
+
+.zip {
+    stroke: #CCC;
+    stroke-width: .5px;
+  }
+.background {
+  fill: none;
+  pointer-events: all;
+}
+
+#states .active {
+  fill: orange;
+}
+
+
+</style>
+</head><body>
+
+<script src="./d3/jquery.js"></script>
+<script src="./d3/bootstrap.min.js"></script>
+<link href="./d3/bootstrap.min.css" rel="stylesheet" media="screen">
+
+<script src="./d3/d3.v3.js"></script>
+<script src="./d3/colorbrewer.v1.min.js"></script>
+
+<script src="./d3/queue.v1.min.js"></script>
+<script src="./d3/d3.v3.min.js"></script>
+<script src="./d3/d3.tip.v0.6.3.js"></script>
+<script src="./d3/topojson.v1.min.js"></script>
+
+
+<script >
+var usageByNeigh = {}
+var incomeByNeigh = {}
+var color1 = d3.scale.threshold()
+    .domain([20244.315999999999, 44392.772400000002, 352318.92460000049, 4142398.0172000006, 28767053.898999959])
+    .range(["#f2f0f7", "#dadaeb", "#bcbddc", "#9e9ac8", "#756bb1", "#54278f"]);
+
+console.log(color1(2.76254));
+var width = 1200,
+    height = 650,
+    centered;
+    gridSize = Math.floor(width / 25),
+    legendWidth = (gridSize/2 + 4)
+
+
+var tip1 = d3.tip()
+  .attr('class', 'd3-tip1')
+  .offset([-10, 0])
+  .html(function(d) {
+    
+  });
+var tip2= d3.tip()
+  .attr('class', 'd3-tip2')
+  .offset([-10, 0])
+  .html(function(d) {
+    return "<strong>Neighbourhood:</strong> <span style='color:red'>" + d.properties.NAME +"<br>"+ "</span>"+
+           "<strong>Borough:</strong> <span style='color:red'>" + d.properties.CITY + "<br>"+"</span>"+
+           "<strong>Taxi Revenue:</strong> <span style='color:red'>" + "$"+usageByNeigh[d.properties.NAME]+"<br>"+"</span>"+
+           "<strong>Median Household Income:</strong> <span style='color:red'>" +"$"+ incomeByNeigh[d.properties.NAME]+ "<br>"+"</span>"
+  });
+
+
+var projection = d3.geo.transverseMercator()
+    .rotate([45,-150])
+    .scale(1)
+    .translate([0, 0]);
+var path = d3.geo.path().projection(projection)
+
+
+var zoom = d3.behavior.zoom()
+    .translate([0, 0])
+    .scale(1)
+    .scaleExtent([1, 20])
+    .on("zoom", zoomed);
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width)
+    .attr("height", height);
+var dis = svg.append("g")
+    .attr("width", width)
+    .attr("height", height)
+    .on("click", clicked)
+    .call(tip1)
+    .call(tip2);
+var g = svg.append("g").call(zoom);
+
+
+var legend = svg.selectAll(".g").data([1]).enter().append("legend")
+	.attr("class","rect")
+    .attr("width", 100)
+    .attr("height", 100)
+    .attr("x",500)
+    .attr("y",300)
+    .style("fill","black");
+
+queue()
+    .defer(d3.json, "./topo/T2.json")
+    .defer(d3.csv,"./data/total_pickup.csv")
+    .await(ready);
+
+    function ready(error, ny,usg) {
+	  //read data from taxiusage file,income file,add file name
+  	  
+
+      usg.forEach(function(d){usageByNeigh[d.Neighborhood] = +d.revenue});
+      usg.forEach(function(d){incomeByNeigh[d.Neighborhood] = +d.income});
+
+      console.log(usageByNeigh);
+  	  // console.log(incomeByNeigh);
+      var tracts = topojson.feature(ny, ny.objects.neighborhood);
+	     var b = path.bounds(tracts),
+          s = .95 / Math.max((b[1][0] - b[0][0]) / width, (b[1][1] - b[0][1]) / height),
+          t = [(width - s * (b[1][0] + b[0][0])) / 2, (height - s * (b[1][1] + b[0][1])) / 2];
+	  
+	  projection
+      .scale(s)
+      .translate(t);
+
+      g.append("g")
+      .attr("class", "county")
+      .selectAll("paths")
+      .data(topojson.feature(ny, ny.objects.neighborhood).features)
+      .enter().append("path")
+      .attr("class", "nieghbourhood")
+      .attr("data-neighbourhood", function(d) {return d.properties.NAME; })
+      .attr("data-borough", function(d) {return d.properties.CITY; })
+      .attr("d", path)
+      .style("fill",function(d) { return color1(usageByNeigh[d.properties.NAME]);})
+	    .on("click", clicked)
+      .on('mouseover', tip1.show)
+      .on('mouseout', tip1.hide);
+
+
+      g.append("g")
+      .attr("class","centre")
+      .selectAll("circle")
+      .data(topojson.feature(ny, ny.objects.neighborhood).features)
+      .enter().append("circle")
+      .attr("class","centroid")
+      .style("fill","orange")
+      .attr("transform", function(d) { return "translate(" + path.centroid(d) + ")"; })
+      .attr("r", function(d) { return incomeByNeigh[d.properties.NAME]/10000; })
+      .on("click", clicked)
+      .on('mouseover', tip2.show)
+      .on('mouseout', tip2.hide);
+    
+ }
+
+
+
+function zoomed() {
+  g.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
+  g.select(".state-border").style("stroke-width", 1.5 / d3.event.scale + "px");
+  g.select(".county-border").style("stroke-width", .5 / d3.event.scale + "px");
+}
+
+
+function clicked(d) {
+  var x, y, k;
+
+  if (d && centered !== d) {
+    var centroid = path.centroid(d);
+    x = centroid[0];
+    y = centroid[1];
+    k = 20;
+    centered = d;
+  } else {
+    x = width / 2;
+    y = height / 2;
+    k = 1;
+    centered = null;
+  }
+
+  g.selectAll("path")
+      .classed("active", centered && function(d) { return d === centered; });
+
+  g.transition()
+      .duration(750)
+      .attr("transform",function() {console.log ("translate(" + width / 2 + "," + height / 2 + ")scale(" + k + ")translate(" + -x + "," + -y + ")");return "transform", "translate(" + width / 2 + "," + height / 2 + ")scale(" + k + ")translate(" + -x + "," + -y + ")"})
+      .style("stroke-width", 1.5 / k + "px");
+}
+</script>
+
+
+</body></html>

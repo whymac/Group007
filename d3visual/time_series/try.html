@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<body></body>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+
+<script>
+var dataset = [ 5, 10, 15, 20, 25 ];
+d3.select("body").selectAll("p")
+    .data(dataset)
+    .enter()
+    .append("p")
+    .text(function(d){return "I can count up to "+d});
+
+var m = 12;
+var year_10 = [11,21,31,41,51,61,71,81,91,101,111,121]
+var year_13 = [10,10,10,10,10,10,10,10,10,10,10,10]
+var year_15 = [0,0,0,0,0,0,0,0,0,0,0,0]
+d = [bumpLayer(m,year_10),bumpLayer(m,year_13),bumpLayer(m,year_15)]
+var stack = d3.layout.stack();
+	layers = stack(d);
+
+console.log(layers)
+function bumpLayer(n,year) {
+  return year.map(function(d, i) { return {x: i, y: d}; });
+}
+// bumpLayer(m,year_10)
+
+
+</script>
