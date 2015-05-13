@@ -1,0 +1,5 @@
+,time of trips,revenue,tip amount,tip percentage
+weekdays_no_rain,482171,7221168.86844,683647.200065,0.1046
+weekends&holidays_rain,483839,6910117.17886,604487.822286,0.0959
+weekends&holidays_no_rain,452371,6573337.44892,568123.160843,0.0946
+weekdays_rain,477914,7117666.0872,675543.22086,0.1049
